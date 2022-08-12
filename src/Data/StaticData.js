@@ -19,45 +19,45 @@ export const DATA_Navigation = [
   {
     name: "My vehicles",
     icon: <Image
-      style={{ width: width * 0.048, height: height * 0.022, alignSelf: "center" }}
+      style={{ width: width * 0.059, height: height * 0.03, alignSelf: "center" }}
       source={require("../assets/Car.png")} />,
     route: ""
   },
   {
     name: "My cards",
-    icon: <CreditCard width={width * 0.045} />,
+    icon: <CreditCard />,
     route: ""
   },
   {
     name: "My history",
-    icon: <History width={width * 0.045} />
+    icon: <History />
   },
   {
     name: "Settings",
-    icon: <Settings width={width * 0.045} />
+    icon: <Settings />
   },
   {
     name: "Pinolo’s missions",
-    icon: <Leaf width={width * 0.045} height={height * 0.028} />
+    icon: <Leaf />
   },
   {
     name: "FAQ",
-    icon: <Faq width={width * 0.045} />
+    icon: <Faq />
   },
 
   {
     name: "Terms & Conditions",
-    icon: <Term width={width * 0.045} />
+    icon: <Term />
   },
 
   {
     name: "Privacy policy",
-    icon: <Privacy width={width * 0.045} />
+    icon: <Privacy />
   },
 
   {
     name: "Support",
-    icon: <Support width={width * 0.045} />
+    icon: <Support />
   },
   {
     name: "Log out",

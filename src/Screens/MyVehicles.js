@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native'
 import React from 'react'
-import { COLORS, height, width } from '../Config'
-import AnyIcon, { Icons } from '../components/AnyIcon'
+import { COLORS, fontWeight, height, width } from '../Config'
 import Cross from "../assets/svgs/Cross.svg"
+import Payoutbutton from "../assets/svgs/Payoutbutton.svg"
 import Edit from "../assets/svgs/Edit.svg"
-import LinearGradient from 'react-native-linear-gradient';
 import { DATA_Navigation } from '../Data/StaticData'
 import Arrow from "../assets/svgs/Arrow.svg"
 const MyVehicles = (props) => {
@@ -15,11 +14,7 @@ const MyVehicles = (props) => {
                 <View style={styles.naviView}>
                     <View style={{ flexDirection: "row" }}>
                         {item.icon}
-                        <Text style={{
-                            marginLeft: width * 0.03,
-                            fontSize: 17,
-                            color: index < 5 ? COLORS.black : "#a3a2a2"
-                        }}>{item.name}</Text>
+                        <Text style={[styles.naviTitle, { color: index < 5 ? COLORS.black : "#a3a2a2" }]}>{item.name}</Text>
                     </View>
                     <Arrow style={{ marginRight: width * 0.05 }} />
                 </View>
@@ -28,9 +23,9 @@ const MyVehicles = (props) => {
         )
 
     }
-    
+
     return (
-        <View style={{}}>
+        <View style={{ flex: 1 }}>
             <Image
                 source={require("../assets/Back.png")}
                 style={{ width: width, height: height, position: "absolute" }}
@@ -40,24 +35,27 @@ const MyVehicles = (props) => {
                     <Cross />
                 </TouchableOpacity>
 
-                <Text style={{ fontSize: 22, color: COLORS.white, fontWeight: "600" }}>Veljko Arsic</Text>
+                <Text style={{ fontSize: 24, color: COLORS.white, fontFamily: fontWeight[600] }}>Veljko Arsic</Text>
                 <TouchableOpacity onPress={() => { props.navigation.navigate("ParkOutCompleted") }} activeOpacity={0.8}>
                     <Edit />
                 </TouchableOpacity>
 
             </View>
-            <Text style={{ fontSize: 16, color: COLORS.white, textAlign: "center", marginTop: 7 }}>{"Balance"}</Text>
-            <Text style={{ fontSize: 18, fontWeight: "700", color: COLORS.white, textAlign: "center" }}>{"1290,00 rsd"}</Text>
-            <TouchableOpacity onPress={() => { props.navigation.navigate("ParkOutCompleted") }} activeOpacity={0.9}>
-                <LinearGradient colors={["#FF9433", "#FFAA55", COLORS.Primary]} style={styles.gradientBtn}>
-                    <Text style={styles.gredientbtnText}>
-                        Payout
-                    </Text>
-                </LinearGradient>
+            <Text style={styles.Balance}>{"Balance"}</Text>
+            <Text style={styles.value}>{"1290,00 rsd"}</Text>
+            <View style={styles.Shadow} />
+            <TouchableOpacity
+                style={{
+                    alignSelf: "center",
+                }}
+                onPress={() => { props.navigation.navigate("ParkOutCompleted") }}
+                activeOpacity={0.9}>
+
+                <Payoutbutton width={width * 0.4} height={height * 0.09} />
             </TouchableOpacity>
             <View style={styles.whiteView} />
             <FlatList
-                style={{ marginTop: height * 0.045 }}
+                style={{ marginTop: height * 0.035 }}
                 data={DATA_Navigation}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
@@ -70,40 +68,69 @@ const MyVehicles = (props) => {
 export default MyVehicles
 
 const styles = StyleSheet.create({
-    SecondaryView: {
-        flex: 1
+    Shadow:{
+        elevation: 17,
+        backgroundColor: 'rgba(52, 52, 51, 0.001)',
+        position: "absolute",
+        width: width * 0.38,
+        height: height*0.065,
+        borderRadius: 100,
+        alignSelf: "center",
+        marginTop: height * 0.222
     },
+    Balance: {
+        fontSize: 18,
+        color: COLORS.white,
+        textAlign: "center", fontFamily:
+            fontWeight[500],
+        marginTop: height * 0.006
+    },
+    naviTitle: {
+        marginLeft: width * 0.09,
+        position: "absolute",
+        fontSize: 18,
+        alignSelf: "center",
+        fontFamily: fontWeight[400]
+    },
+
     sideNavi: {
         width: "93%",
         marginLeft: width * 0.065,
-        marginBottom: height * 0.02
+        marginBottom: height * 0.02,
+        justifyContent: "center",
     },
     whiteView: {
         backgroundColor: COLORS.white,
         position: "absolute",
         width: width,
         height: height,
-        top: height * 0.34,
+        top: height * 0.305,
         borderTopRightRadius: 12,
         borderTopLeftRadius: 12,
     },
     bottomLine: {
         borderBottomWidth: 1,
         borderColor: "#b5b3b3",
-        marginTop: height * 0.005
+        marginTop: height * 0.007
     },
     naviView: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center"
     },
+    value: {
+        fontSize: 20,
+        color: COLORS.white,
+        textAlign: "center", fontFamily: fontWeight[700],
+        marginTop: -height * 0.013
+    },
     header: {
         flexDirection: "row",
-        width: "90%",
+        width: "97%",
         alignItems: "center",
         justifyContent: "space-between",
         alignSelf: "center",
-        marginVertical: height * 0.04
+        marginVertical: height * 0.035
     },
     gradientBtn: {
         width: width * 0.4,
@@ -117,7 +144,6 @@ const styles = StyleSheet.create({
     },
     gredientbtnText: {
         color: COLORS.white,
-        fontWeight: "800",
         fontSize: 18
     }
 })
